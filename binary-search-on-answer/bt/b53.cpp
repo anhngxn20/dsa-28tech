@@ -17,13 +17,15 @@
 
 using namespace std;
 
-int check(int a[], int n, int k, double len) {
-    ll total = 0;
+int check(int a[], int n, int L, ll h) {
+    ll sum = 0;
     for (int i = 0; i < n; i++)
     {
-        total += (ll)(a[i] / len);
+        if (a[i] > h) {
+            sum += a[i] - h;
+        }
     }
-    return total >= k;
+    return sum >= L;
 }
 
 int main() {
@@ -31,22 +33,22 @@ int main() {
     cin.tie(nullptr);
 
     // your code here
-    int n, k; cin >> n >> k;
+    int n, L; cin >> n >> L;
     int a[n]; for (int &x : a) cin >> x;
-    double l = 0.000001, r = *max_element(a, a + n);
-    double res = 0;
-    int t = 100;
-    while (l <= r && t--)
-    {
-        double m = (l + r) / 2;
-        if (check(a, n, k, m))
+    ll l = 0, r = *(max_element(a, a+n));
+    ll res;
+    while (l <= r) {
+        ll m = (l + r) / 2;
+        if (check(a, n, L, m))
         {
             res = m;
-            l = m;
+            l = m + 1;
         } else {
-            r = m;
-        } 
+            r = m - 1;
+        }
+        
     }
-    cout << fixed << setprecision(6) << res << endl;;
+    cout << res << endl;
+
     return 0;
 }
