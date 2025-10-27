@@ -22,9 +22,6 @@ int main() {
     cin.tie(nullptr);
 
     // your code here
-    int n, h; cin >> n >> h;
-    int a[n]; for (int &x : a) cin >> x;
-    
 
     return 0;
 }
