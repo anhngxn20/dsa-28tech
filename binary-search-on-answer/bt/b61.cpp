@@ -17,37 +17,21 @@
 
 using namespace std;
 
-int check(int a[], int n, int h, ll m) {
-    int s = 0;
-    for (int i = 0; i < n; i++)
-    {
-        s += (a[i] + m - 1) / m;
-    }
-    return s <= h;
-    
-}
 
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
     // your code here
-    int n, h; cin >> n >> h;
+    int n; cin >> n;
     int a[n]; for (int &x : a) cin >> x;
-    ll l = 1, r = 1e18;
-    ll res;
-    while (l <= r)
+    sort(a, a+n);
+    int l = 0, r = n-1;
+    int res = 0;
+    while (l < r)
     {
-        ll m = (l + r) / 2;
-        if (check(a, n, h, m))
-        {
-            res = m;
-            r = m - 1;
-        }
-        else {
-            l = m + 1;
-        }
-        
+        res = max(res, a[l] + a[r]);
+        l++; r--;
     }
     cout << res << endl;
 

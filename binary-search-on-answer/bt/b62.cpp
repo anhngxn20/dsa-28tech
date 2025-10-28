@@ -17,14 +17,19 @@
 
 using namespace std;
 
-int check(int a[], int n, int h, ll m) {
-    int s = 0;
+int check(int a[], int n, int k, ll m) {
+    ll s = 0;
+    int cnt = -1;
     for (int i = 0; i < n; i++)
     {
-        s += (a[i] + m - 1) / m;
+        s += a[i];
+        if (s >= m) {
+            s = 0;
+            cnt++;
+        }
     }
-    return s <= h;
-    
+    return cnt >= k;
+
 }
 
 int main() {
@@ -32,22 +37,23 @@ int main() {
     cin.tie(nullptr);
 
     // your code here
-    int n, h; cin >> n >> h;
+    int n, k; cin >> n >> k;
     int a[n]; for (int &x : a) cin >> x;
-    ll l = 1, r = 1e18;
+    ll l = *min_element(a, a+n);
+    ll r = accumulate(a, a + n, 0ll);
     ll res;
-    while (l <= r)
+    while (l <= r)          
     {
         ll m = (l + r) / 2;
-        if (check(a, n, h, m))
+        if (check(a, n, k, m))
         {
             res = m;
-            r = m - 1;
-        }
-        else {
             l = m + 1;
         }
-        
+        else
+        {
+            r = m - 1;
+        }        
     }
     cout << res << endl;
 
