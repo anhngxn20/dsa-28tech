@@ -8,6 +8,9 @@
     "climits": "cpp",
     "utility": "cpp",
     "xiosbase": "cpp",
-    "sstream": "cpp"
+    "sstream": "cpp",
+    "map": "cpp",
+    "iosfwd": "cpp",
+    "xtree": "cpp"
   }
 }
