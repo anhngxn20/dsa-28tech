@@ -26,7 +26,26 @@ int main() {
     // your code here
     int n, k; cin >> n >> k;
     int a[n]; for (int &x : a) cin >> x;
-    
+    int sum = 0;
+    for (int x : a) sum += x;
+    if (sum < k)
+    {
+        cout << -1;
+        return 0;
+    }
+    int cur_sum = 0;
+    for (int i = 0; i < k; i++)
+    {
+        cur_sum += a[i];        
+    }
+    int res = cur_sum;
+    for (int i = k; i < n; i++)
+    {
+        cur_sum -= a[i - k];
+        cur_sum += a[i];
+        res = max(res, cur_sum);
+    }
+    cout << k - res;    
 
     return 0;
 }
