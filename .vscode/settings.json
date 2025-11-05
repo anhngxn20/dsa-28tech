@@ -11,6 +11,16 @@
     "sstream": "cpp",
     "map": "cpp",
     "iosfwd": "cpp",
-    "xtree": "cpp"
+    "xtree": "cpp",
+    "deque": "cpp",
+    "list": "cpp",
+    "queue": "cpp",
+    "vector": "cpp",
+    "xstring": "cpp",
+    "initializer_list": "cpp",
+    "set": "cpp",
+    "unordered_map": "cpp",
+    "unordered_set": "cpp",
+    "xhash": "cpp"
   }
 }
