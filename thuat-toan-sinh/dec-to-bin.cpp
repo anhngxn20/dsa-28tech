@@ -19,21 +19,19 @@
 
 using namespace std;
 
-int n, a[1000], final = 0;
-
-void init() {
-
-}
-
-void generating() {
-    
-}
-
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
     // your code here
+    int A = 39;
+    for (int j = 7; j >= 0; j--) {
+        // 1 << j = pow(2, j)
+        if (A & (1 << j)) {
+            cout << 1;
+        }
+        else cout << 0;
+    }
 
     return 0;
 }
