@@ -16,42 +16,42 @@
 #define ll long long
 #define fi first
 #define se second
-#define mod 1000000007;
 
 using namespace std;
 
-ll F[105][105];
+int n, k, a[1005], final = 0;
 
-void generating()
-{
-    for (int i = 1; i < 105; i++)
-    {
-        for (int j = 1; j <= i; j++)
-        {
-            if (i == j)
-                F[i][j] = 1;
-            else
-                F[i][j] = (F[i - 1][j - 1] + F[i - 1][j]) % mod;
+void init() {
+    for (int i = 1; i <= k; i++) {
+        a[i] = 1;
+    }
+}
+
+void generating() {
+    int i = k;
+    while (i >= 1 && a[i] == n) i--;
+    if (i == 0) final = 1;
+    else {
+        a[i]++;
+        for (int j = i + 1; j <= k; j++) {
+            a[j] = 1;
         }
     }
 }
 
-int main()
-{
+int main() {
     ios::sync_with_stdio(false);
     cin.tie(nullptr);
 
     // your code here
-    int n;
-    cin >> n;
-    generating();
-    for (int i = 1; i <= n; i++)
-    {
-        for (int j = 1; j <= i; j++)
-        {
-            cout << F[i][j] << " ";
+    cin >> n >> k;
+    init();
+    while (!final) {
+        for (int i = 1; i <= k; i++) {
+            cout << a[i];
         }
         cout << endl;
+        generating();
     }
 
     return 0;

@@ -19,34 +19,24 @@
 
 using namespace std;
 
-int n, final = 0;
-
-string a[1005];
+int n, a[1005], b[1005], final = 0;
+vector<string> v;
 
 void init() {
-    multiset<string> se;
-    string s;
     for (int i = 1; i <= n; i++) {
-        cin >> s;
-        se.insert(s);
-    }
-    int i = 1;
-    for (auto it = se.begin(); it != se.end(); it++) {
-        a[i] = *it;
-        i++;
+        a[i] = 0;
+        b[i] = i;
     }
 }
 
 void generating() {
     int i = n;
-    while (i >= 1 && a[i] > a[i + 1]) i--;
-    if (i == 0) final = 1;
-    else {
-        int j = n;
-        while (a[i] > a[j]) j--;
-        swap(a[i], a[j]);
-        reverse(a + i + 1, a + n + 1);
+    while (i >= 1 && a[i] == 1) {
+        a[i] = 0;
+        i--;
     }
+    if (i == 0) final = 1;
+    else a[i] = 1;
 }
 
 int main() {
@@ -57,12 +47,18 @@ int main() {
     cin >> n;
     init();
     while (!final) {
+        string s = "";
         for (int i = 1; i <= n; i++) {
-            cout << a[i] << " ";
+            if (a[i]) {
+                s += to_string(b[i]);
+                if (i != n) s += " ";
+            }
         }
-        cout << endl;
+        if (s.size()) v.push_back(s);
         generating();
     }
-
+    sort(v.begin(), v.end());
+    for (string s : v) cout << s << endl;
+    
     return 0;
 }

@@ -19,31 +19,25 @@
 
 using namespace std;
 
-int n, a[1000], final = 0;
+string s;
+int final = 0;
 
-void ktao()
-{
-    for (int i = 1; i <= n; i++)
-    {
-        a[i] = 0;
-    }
+void init() {
+    cin >> s;
+    set<char> se(s.begin(), s.end());
+    s = string(se.begin(), se.end());
 }
 
-void generating()
-{
-    int i = n;
-    while (i >= 1 && a[i] == 1)
-    {
-        a[i] = 0;
-        i--;
-    }
-    if (i == 0)
-    {
-        final = 1;
-    }
+void generating() {
+    int i = s.size() - 1;
+    while (i >= 0 && s[i] > s[i + 1]) i--;
+    if (i < 0) final = 1;
     else
     {
-        a[i] = 1;
+        int j = s.size() - 1;
+        while (s[i] > s[j]) j--;
+        swap(s[i], s[j]);
+        reverse(s.begin() + i + 1, s.end());
     }
 }
 
@@ -53,15 +47,10 @@ int main()
     cin.tie(nullptr);
 
     // your code here
-    cin >> n;
-    ktao();
+    init();
     while (!final)
     {
-        for (int i = 1; i <= n; i++)
-        {
-            cout << a[i] << " ";
-        }
-        cout << endl;
+        cout << s << "\n";
         generating();
     }
 

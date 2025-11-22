@@ -19,21 +19,11 @@
 
 using namespace std;
 
-int n, final = 0;
-
-string a[1005];
+int n, a[1005], final = 0;
 
 void init() {
-    multiset<string> se;
-    string s;
     for (int i = 1; i <= n; i++) {
-        cin >> s;
-        se.insert(s);
-    }
-    int i = 1;
-    for (auto it = se.begin(); it != se.end(); it++) {
-        a[i] = *it;
-        i++;
+        a[i] = i;
     }
 }
 
@@ -56,13 +46,21 @@ int main() {
     // your code here
     cin >> n;
     init();
-    while (!final) {
+    int b[n]; 
+    for (int i = 1; i <= n; i++) cin >> b[i];
+    int curr_cnt = 1, cnt = 1;
+    while(!final) {
+        int ok = 1;
         for (int i = 1; i <= n; i++) {
-            cout << a[i] << " ";
+            if (a[i] != b[i]) ok = 0;
         }
-        cout << endl;
+        if (ok) {
+            curr_cnt = cnt;
+        }
+        cnt++;
         generating();
     }
+    cout << curr_cnt;
 
     return 0;
 }
